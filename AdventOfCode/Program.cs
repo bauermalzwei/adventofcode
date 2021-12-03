@@ -6,20 +6,17 @@ using BenchmarkDotNet.Running;
 
 namespace AdventOfCode
 {
-
     class Program
     {
+        static SolutionCollector Solutions = new Infrastructure.SolutionCollector();
 
         static void Main(string[] args)
         {
-
-          
             foreach (ASolution solution in Solutions)
             {
+                Console.WriteLine();
+                Console.WriteLine(FormatHelper.FunctionFormat(solution));
             }
-
-            
-
         }
     }
 }

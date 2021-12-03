@@ -7,13 +7,10 @@ using AdventOfCode.Infrastructure.Models;
 
 namespace AdventOfCode.Solutions
 {
-
     abstract class ASolution
     {
         Lazy<string> _input, _debugInput;
         Lazy<SolutionResult> _part1, _part2;
-
-        Lazy<string> _input, _part1, _part2;
 
         public int Day { get; }
         public int Year { get; }
@@ -48,10 +45,6 @@ namespace AdventOfCode.Solutions
             {
                 yield return Part2;
             }
-                else
-                {
-                    output += "Part 1: Unsolved\n";
-                    if(part == 1) doOutput = true;
         }
 
         SolutionResult SolveSafely(Func<string> SolverFunction)
@@ -62,19 +55,11 @@ namespace AdventOfCode.Solutions
                 {
                     throw new InputException("DebugInput is null or empty");
                 }
-
-            if(doOutput) Console.WriteLine(output);
             }
             else if (string.IsNullOrEmpty(Input))
             {
                 throw new InputException("Input is null or empty");
             }
-            else
-            {
-                try
-                {
-                    DateTime CURRENT_EST = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Utc).AddHours(-5);
-                    if(CURRENT_EST < new DateTime(Year, 12, Day)) throw new InvalidOperationException();
 
             try
             {
@@ -95,7 +80,6 @@ namespace AdventOfCode.Solutions
                     throw;
                 }
             }
-            return input;
         }
 
         protected abstract string SolvePartOne();
