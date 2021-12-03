@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Solutions;
+using BenchmarkDotNet.Running;
 
 namespace AdventOfCode
 {
@@ -11,10 +12,15 @@ namespace AdventOfCode
 
         static void Main(string[] args)
         {
-            foreach(ASolution solution in Solutions)
+
+          
+            foreach (ASolution solution in Solutions)
             {
                 solution.Solve();
             }
+
+            
+
         }
     }
 }

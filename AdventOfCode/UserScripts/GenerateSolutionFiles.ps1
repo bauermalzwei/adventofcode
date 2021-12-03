@@ -1,6 +1,6 @@
-﻿param(
+﻿#param(#
     [int]$Year = (Get-Date).Year
-)
+#)
 
 $template = @"
 using System;
@@ -32,7 +32,7 @@ namespace AdventOfCode.Solutions.Year<YEAR>
 
 "@
 
-$newDirectory = Join-Path $PSScriptRoot ".." "Solutions" "Year$Year" 
+$newDirectory = "C:\Users\bauerch\source\repos\adventofcode\AdventOfCode\Solutions\Year2021"
 
 if(!(Test-Path $newDirectory)) {
     New-Item $newDirectory -ItemType Directory | Out-Null

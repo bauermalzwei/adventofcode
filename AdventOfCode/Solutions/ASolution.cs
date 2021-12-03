@@ -89,6 +89,7 @@ namespace AdventOfCode.Solutions
 
                     using(var client = new WebClient())
                     {
+                        client.Proxy = null;
                         client.Headers.Add(HttpRequestHeader.Cookie, Program.Config.Cookie);
                         input = client.DownloadString(INPUT_URL).Trim();
                         File.WriteAllText(INPUT_FILEPATH, input);
