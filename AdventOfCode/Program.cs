@@ -1,19 +1,21 @@
-﻿using AdventOfCode.Solutions;
+﻿using System;
+using AdventOfCode.Infrastructure;
+using AdventOfCode.Infrastructure.Helpers;
+using AdventOfCode.Solutions;
+using BenchmarkDotNet.Running;
 
 namespace AdventOfCode
 {
-
     class Program
     {
-
-        public static Config Config = Config.Get("config.json");
-        static SolutionCollector Solutions = new SolutionCollector(Config.Year, Config.Days);
+        static SolutionCollector Solutions = new Infrastructure.SolutionCollector();
 
         static void Main(string[] args)
         {
-            foreach(ASolution solution in Solutions)
+            foreach (ASolution solution in Solutions)
             {
-                solution.Solve();
+                Console.WriteLine();
+                Console.WriteLine(FormatHelper.FunctionFormat(solution));
             }
         }
     }
