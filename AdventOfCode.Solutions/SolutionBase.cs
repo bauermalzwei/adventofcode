@@ -97,6 +97,9 @@ public abstract class SolutionBase
         try
         {
             var input = AdventOfCodeService.FetchInput(Year, Day).Result;
+            //create folder if it doesnt exist
+            var dir = Path.GetDirectoryName(inputFilepath);
+            System.IO.Directory.CreateDirectory(dir);
             File.WriteAllText(inputFilepath, input);
             return input;
         }

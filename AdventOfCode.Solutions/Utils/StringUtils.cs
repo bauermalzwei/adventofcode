@@ -56,4 +56,16 @@ public static class StringUtils
                 .ToArray();
         }
     }
+    /// <summary>
+    /// removes empty lines from Input and then splits when two line breaks are next to each other
+    /// </summary>
+    /// <returns></returns>
+    public static string[] SplitByEmptyLine(this string input, bool shouldTrim = false)
+    {
+        return input
+            .Split(new[] { "\n\n" }, StringSplitOptions.None)
+            .Select(s => shouldTrim ? s.Trim() : s)
+            .ToArray();
+
+    }
 }
