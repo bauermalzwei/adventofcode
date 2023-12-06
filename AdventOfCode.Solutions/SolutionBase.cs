@@ -7,7 +7,6 @@ global using AdventOfCode.Solutions.Utils;
 
 using System.Diagnostics;
 using System.Net;
-using AdventOfCode.Services;
 
 namespace AdventOfCode.Solutions;
 
@@ -96,10 +95,7 @@ public abstract class SolutionBase
 
         try
         {
-            var input = AdventOfCodeService.FetchInput(Year, Day).Result;
-            //create folder if it doesnt exist
-            var dir = Path.GetDirectoryName(inputFilepath);
-            System.IO.Directory.CreateDirectory(dir);
+            var input = InputService.FetchInput(Year, Day).Result;
             File.WriteAllText(inputFilepath, input);
             return input;
         }
@@ -147,12 +143,4 @@ public abstract class SolutionBase
 
     protected abstract string SolvePartOne();
     protected abstract string SolvePartTwo();
-}
-
-public struct SolutionResult
-{
-    public string Answer { get; set; }
-    public TimeSpan Time { get; set; }
-
-    public static SolutionResult Empty => new SolutionResult();
 }
