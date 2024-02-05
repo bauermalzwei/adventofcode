@@ -6,7 +6,10 @@ global using System.Text;
 global using AdventOfCode.Solutions.Utils;
 
 using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace AdventOfCode.Solutions;
 
@@ -84,7 +87,7 @@ public abstract class SolutionBase
     string LoadInput(bool debug = false)
     {
         var inputFilepath =
-            $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}";
+            $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}.txt";
 
         if (File.Exists(inputFilepath) && new FileInfo(inputFilepath).Length > 0)
         {
@@ -96,6 +99,24 @@ public abstract class SolutionBase
         try
         {
             var input = InputService.FetchInput(Year, Day).Result;
+
+            // Create directory if it doesn't exist with full control
+            var dir= Directory.CreateDirectory(new FileInfo(inputFilepath).Directory.FullName);
+
+            //if (Directory.Exists(dir.FullName) == false)
+            //    throw new Exception(string.Format("Directory {0} does not exist, so permissions cannot be set.", dir.FullName));
+
+            //// Get directory access info
+            //DirectoryInfo dinfo = new DirectoryInfo(dir.FullName);
+            //DirectorySecurity dSecurity = dinfo.GetAccessControl();
+
+            //// Add the FileSystemAccessRule to the security settings. 
+            //dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+
+            // Set the access control
+            //dinfo.SetAccessControl(dSecurity);
+
+            
             File.WriteAllText(inputFilepath, input);
             return input;
         }
