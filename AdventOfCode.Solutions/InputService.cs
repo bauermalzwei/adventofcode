@@ -8,6 +8,7 @@ public static class InputService
     {
         CookieContainer = GetCookieContainer(),
         UseCookies = true,
+        Proxy = new WebProxy(new Uri("http://proxy.br-edv.brnet.int:8081/"))
     };
 
     private static readonly HttpClient _client = new(_handler)
