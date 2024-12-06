@@ -10,3 +10,4 @@ foreach (var solution in SolutionCollector.FetchSolutions(year, days))
 {
     Console.WriteLine(solution.ToString());
 }
+    
